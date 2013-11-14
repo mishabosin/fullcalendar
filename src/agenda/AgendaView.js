@@ -311,6 +311,8 @@ function AgendaView(element, calendar, viewName) {
 
 	function buildDayTableHeadHTML() {
 		var headerClass = tm + "-widget-header";
+        var classNames;
+        var today = clearTime(new Date());
 		var date;
 		var html = '';
 		var weekText;
@@ -340,8 +342,12 @@ function AgendaView(element, calendar, viewName) {
 
 		for (col=0; col<colCnt; col++) {
 			date = cellToDate(0, col);
+            classNames = [headerClass, tm + "-day-header"];
+            if (+date == +today) {
+                classNames.push(tm + '-today-header');
+            }
 			html +=
-				"<th class='fc-" + dayIDs[date.getDay()] + " fc-col" + col + ' ' + headerClass + "'>" +
+				"<th class='fc-" + dayIDs[date.getDay()] + " fc-col" + col + ' ' + classNames.join(' ') + "'>" +
 				htmlEscape(formatDate(date, colFormat)) +
 				"</th>";
 		}
