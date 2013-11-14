@@ -205,26 +205,33 @@ function AgendaEventRenderer() {
 			columnRight -= columnWidth * .025;
 			columnWidth = columnRight - columnLeft;
 
-			width = columnWidth * (seg.forwardCoord - seg.backwardCoord);
+            if (opt('slotResize')) {
+                width = columnWidth * (seg.forwardCoord - seg.backwardCoord);
 
-			if (opt('slotEventOverlap')) {
-				// double the width while making sure resize handle is visible
-				// (assumed to be 20px wide)
-				width = Math.max(
-					(width - (20/2)) * 2,
-					width // narrow columns will want to make the segment smaller than
-						// the natural width. don't allow it
-				);
-			}
+                if (opt('slotEventOverlap')) {
+                    // double the width while making sure resize handle is visible
+                    // (assumed to be 20px wide)
+                    width = Math.max(
+                        (width - (20/2)) * 2,
+                        width // narrow columns will want to make the segment smaller than
+                        // the natural width. don't allow it
+                    );
+                }
 
-			if (isRTL) {
-				right = columnRight - seg.backwardCoord * columnWidth;
-				left = right - width;
-			}
-			else {
-				left = columnLeft + seg.backwardCoord * columnWidth;
-				right = left + width;
-			}
+                if (isRTL) {
+                    right = columnRight - seg.backwardCoord * columnWidth;
+                    left = right - width;
+                }
+                else {
+                    left = columnLeft + seg.backwardCoord * columnWidth;
+                    right = left + width;
+                }
+
+            } else {
+                width = columnLeft + columnWidth;
+                left = columnLeft;
+                right = left + width;
+            }
 
 			// make sure horizontal coordinates are in bounds
 			left = Math.max(left, columnLeft);

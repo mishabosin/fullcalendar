@@ -14,7 +14,8 @@ setDefaults({
 	},
 	minTime: 0,
 	maxTime: 24,
-	slotEventOverlap: true
+	slotEventOverlap: true,
+    slotEventResize: true
 });
 
 
