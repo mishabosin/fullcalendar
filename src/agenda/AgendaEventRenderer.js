@@ -205,7 +205,7 @@ function AgendaEventRenderer() {
 			columnRight -= columnWidth * .025;
 			columnWidth = columnRight - columnLeft;
 
-            if (opt('slotResize')) {
+            if (opt('slotEventResize')) {
                 width = columnWidth * (seg.forwardCoord - seg.backwardCoord);
 
                 if (opt('slotEventOverlap')) {
