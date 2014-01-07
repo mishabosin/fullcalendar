@@ -162,7 +162,13 @@ function View(element, calendar, viewName) {
 				function(ev) {
 					trigger('eventMouseout', this, event, ev);
 				}
-			);
+			)
+            .mousedown(function(ev) {
+                trigger('eventMousedown', this, event, ev);
+            })
+            .mouseup(function(ev) {
+                trigger('eventMouseup', this, event, ev);
+            });
 		// TODO: don't fire eventMouseover/eventMouseout *while* dragging is occuring (on subject element)
 		// TODO: same for resizing
 	}
